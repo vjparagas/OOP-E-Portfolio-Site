@@ -1,0 +1,675 @@
+cat > /mnt/user-data/outputs/index.html << 'HTMLDONE'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>VJ P. Evangelista | OOP E-Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --g50:#f2f8ee;--g100:#d8eccc;--g200:#b2d898;--g300:#7ec45c;
+  --g400:#5a9e38;--g500:#428c2a;--g600:#357120;--g700:#275516;
+  --g800:#1e4511;--g900:#102408;
+  --b50:#faf8f4;--b100:#f0ebe0;--b200:#e0d6c2;--b400:#b8a886;
+  --white:#ffffff;
+  --td:#18280e;--tm:#344e22;--tmu:#607850;--tl:#8fa07a;
+  --acc:#3d7a28;--brd:#cfe0bc;
+  --a300:#f5c842;--a400:#e0a800;--a500:#c08800;
+  --sh1:0 1px 4px rgba(30,69,17,.07);
+  --sh2:0 6px 24px rgba(30,69,17,.12);
+  --sh3:0 12px 48px rgba(30,69,17,.18);
+  --r1:4px;--r2:8px;--r3:12px;--r4:18px;--r5:24px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--b50);color:var(--td);line-height:1.65;font-size:15px}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(250,248,244,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--brd);}
+.nav-in{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:54px;padding:0 2.5rem;}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--g600);text-decoration:none;font-weight:600;letter-spacing:.03em;}
+.nav-logo em{color:var(--a400);font-style:normal}
+.nav-links{display:flex;gap:.1rem;list-style:none}
+.nav-links a{text-decoration:none;font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--tmu);padding:.35rem .9rem;border-radius:var(--r1);transition:background .15s,color .15s;}
+.nav-links a:hover{background:var(--g50);color:var(--g600)}
+.nav-links a.active{background:var(--g100);color:var(--g600)}
+.page{display:none}
+.page.active{display:block}
+.home-wrap{min-height:100vh;padding-top:54px;display:flex;flex-direction:column;position:relative;overflow:hidden;background:var(--g900);}
+.home-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.home-bg::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(178,216,152,.05) 1px, transparent 1px),linear-gradient(90deg, rgba(178,216,152,.05) 1px, transparent 1px);background-size:60px 60px;}
+.home-bg::after{content:'';position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle, rgba(62,122,40,.22) 0%, transparent 68%);top:-260px;right:-200px;}
+.home-bg-glow2{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle, rgba(62,122,40,.12) 0%, transparent 70%);bottom:-200px;left:-150px;}
+.home-bg-amber{position:absolute;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle, rgba(224,168,0,.08) 0%, transparent 70%);bottom:10%;right:12%;}
+.home-bg-ring1{position:absolute;width:580px;height:580px;border-radius:50%;border:1px solid rgba(178,216,152,.09);bottom:-200px;left:-160px;}
+.home-bg-ring2{position:absolute;width:360px;height:360px;border-radius:50%;border:1px solid rgba(178,216,152,.06);bottom:-100px;left:-60px;}
+.home-bg-ring3{position:absolute;width:420px;height:420px;border-radius:50%;border:1px solid rgba(178,216,152,.06);top:-160px;right:-140px;}
+.home-bg-ring4{position:absolute;width:260px;height:260px;border-radius:50%;border:1px solid rgba(178,216,152,.05);top:-60px;right:-40px;}
+.home-bg-dot{position:absolute;right:18%;top:28%;width:5px;height:5px;border-radius:50%;background:rgba(245,200,66,.5);box-shadow:0 0 24px 6px rgba(245,200,66,.2);}
+.home-bg-dot2{position:absolute;left:12%;bottom:28%;width:3px;height:3px;border-radius:50%;background:rgba(178,216,152,.25);box-shadow:0 0 12px 3px rgba(178,216,152,.1);}
+.home-bg-dot3{position:absolute;left:30%;top:20%;width:2px;height:2px;border-radius:50%;background:rgba(178,216,152,.2);}
+.home-bg-dot4{position:absolute;right:30%;bottom:35%;width:2px;height:2px;border-radius:50%;background:rgba(245,200,66,.2);}
+.home-bg-line{position:absolute;width:1px;height:220px;background:linear-gradient(to bottom,transparent,rgba(178,216,152,.12),transparent);left:50%;top:50%;transform:translate(-50%,-50%) rotate(25deg);}
+.home-bg-line2{position:absolute;width:1px;height:160px;background:linear-gradient(to bottom,transparent,rgba(178,216,152,.08),transparent);left:35%;top:40%;transform:rotate(-15deg);}
+.home-hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4rem 2rem;text-align:center;position:relative;z-index:2;}
+.home-eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(178,216,152,.6);border:1px solid rgba(178,216,152,.15);background:rgba(178,216,152,.06);padding:.28rem .9rem;border-radius:999px;margin-bottom:2rem;}
+.home-eyebrow::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--a300);flex-shrink:0;opacity:.9}
+.home-name{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,6.5vw,6.5rem);color:#fff;line-height:1.0;letter-spacing:.01em;word-spacing:-.05em;margin-bottom:.5rem;font-weight:300;white-space:nowrap;}
+.home-name .first{color:rgba(255,255,255,.75);font-weight:300}
+.home-line{width:60px;height:1px;background:linear-gradient(90deg,transparent,rgba(245,200,66,.4),transparent);margin:1.5rem auto;}
+.home-sub{color:rgba(255,255,255,.75);font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin-bottom:1.4rem;}
+.home-desc{color:rgba(255,255,255,.4);font-size:.88rem;line-height:1.8;max-width:44ch;margin-bottom:2.4rem;}
+.home-btns{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+.btn-p{background:var(--g600);color:#fff;font-size:.73rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.65rem 1.6rem;border-radius:var(--r2);border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .15s,transform .1s;}
+.btn-p:hover{background:var(--g400);transform:translateY(-1px)}
+.btn-o{background:transparent;color:rgba(245,200,66,.6);font-size:.73rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.65rem 1.6rem;border-radius:var(--r2);border:1px solid rgba(245,200,66,.2);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;}
+.btn-o:hover{background:rgba(245,200,66,.07);color:rgba(245,200,66,.85);border-color:rgba(245,200,66,.35)}
+.page-hdr{background:var(--g800);color:#fff;padding:4rem 0 2.5rem;position:relative;overflow:hidden;}
+.page-hdr::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hdr::after{content:'';position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(62,122,40,.2) 0%,transparent 70%);top:-150px;right:-100px;pointer-events:none;}
+.page-hdr-inner{max-width:1100px;margin:0 auto;padding:0 2.5rem;display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap;position:relative;z-index:1;}
+.hdr-eyebrow{font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem;}
+.hdr-eyebrow::before{content:'';width:20px;height:1px;background:rgba(255,255,255,.2)}
+.page-hdr h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.2rem);letter-spacing:-.015em;line-height:1.05;font-weight:400;}
+.page-hdr p{color:rgba(255,255,255,.4);font-size:.8rem;margin-top:.4rem;letter-spacing:.03em}
+.hdr-badge{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7);font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.4rem 1.1rem;border-radius:999px;white-space:nowrap;align-self:center;}
+.stats-bar{background:var(--white);border-bottom:1px solid var(--brd)}
+.stats-bar-in{max-width:1100px;margin:0 auto;display:flex;align-items:stretch}
+.stat-item{flex:1;padding:1.1rem 1.5rem;display:flex;align-items:center;gap:.85rem;border-right:1px solid var(--brd);transition:background .15s;cursor:default;}
+.stat-item:last-child{border-right:none}
+.stat-item:hover{background:var(--g50)}
+.stat-icon{width:34px;height:34px;border-radius:var(--r2);background:var(--g100);border:1px solid var(--brd);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.stat-icon svg{width:14px;height:14px}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--acc);line-height:1}
+.stat-lbl{font-size:.63rem;font-weight:700;color:var(--tmu);text-transform:uppercase;letter-spacing:.08em}
+.tabs-wrap{background:var(--white);border-bottom:1px solid var(--brd)}
+.tabs{max-width:1100px;margin:0 auto;padding:0 2.5rem;display:flex;flex-wrap:wrap;}
+.tab-btn{background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;padding:.75rem 1rem;font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--tmu);cursor:pointer;transition:color .15s,border-color .15s;display:flex;align-items:center;gap:.45rem;}
+.tab-btn svg{width:13px;height:13px;opacity:.6}
+.tab-btn:hover{color:var(--acc)}
+.tab-btn.active{color:var(--acc);border-bottom-color:var(--acc)}
+.tab-btn.active svg{opacity:1}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.content-wrap{max-width:1100px;margin:0 auto;padding:2.5rem 2.5rem 4rem}
+.eyebrow{display:inline-flex;align-items:center;gap:.45rem;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:.4rem;}
+.eyebrow::before{content:'';width:14px;height:2px;background:var(--acc);border-radius:2px}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,2.4vw,2.1rem);color:var(--td);letter-spacing:-.005em;margin-bottom:.5rem;font-weight:400;}
+.sec-desc{color:var(--tmu);font-size:.845rem;max-width:500px;margin-bottom:1.8rem;line-height:1.7}
+.sec-divider{display:flex;align-items:center;gap:.6rem;margin-bottom:1.6rem;margin-top:.1rem;}
+.sec-divider span:not(.sec-divider-dot){height:1px;flex:1;background:linear-gradient(90deg, var(--brd), transparent);}
+.sec-divider span:last-child{background:linear-gradient(90deg, transparent, var(--brd));}
+.sec-divider-dot{flex:none !important;width:5px !important;height:5px !important;border-radius:50% !important;background:var(--acc) !important;opacity:.45;}
+.card{background:var(--white);border:1px solid var(--brd);border-radius:var(--r4);padding:1.6rem 1.75rem;margin-bottom:1.25rem;box-shadow:var(--sh1);transition:box-shadow .2s,transform .2s;}
+.card:hover{box-shadow:var(--sh2);transform:translateY(-1px)}
+.card-hdr{display:flex;align-items:center;gap:.85rem;margin-bottom:1.1rem;padding-bottom:.9rem;border-bottom:1px solid var(--b100);}
+.card-num{width:30px;height:30px;border-radius:50%;background:var(--g100);color:var(--g600);font-weight:700;font-size:.72rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--brd);font-family:'DM Sans',sans-serif;}
+.card-title{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--td);flex:1;font-weight:400}
+.badge{display:inline-block;padding:.16rem .6rem;border-radius:999px;font-size:.63rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.bg{background:var(--g100);color:var(--g600)}
+.bb{background:var(--b200);color:var(--tm)}
+.bd{background:var(--g800);color:var(--g50)}
+.bw{background:rgba(255,200,100,.15);color:#8a6000;border:1px solid rgba(255,200,100,.3)}
+.refl{background:var(--g50);border:1px solid var(--g100);border-left:3px solid var(--acc);border-radius:var(--r2);padding:1.05rem 1.25rem;margin-top:.85rem;}
+.refl-lbl{font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--acc);margin-bottom:.4rem;display:flex;align-items:center;gap:.35rem}
+.refl-lbl svg{width:11px;height:11px}
+.refl p{font-size:.845rem;color:var(--tm);line-height:1.75}
+.src-section{margin:1.1rem 0 .85rem;}
+.src-header{display:flex;align-items:center;gap:.55rem;margin-bottom:.65rem;}
+.src-header-label{font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--tmu);display:flex;align-items:center;gap:.4rem;}
+.src-header-label .src-chevrons{color:var(--acc);font-weight:700;font-size:.76rem;letter-spacing:-.02em;}
+.src-header-line{flex:1;height:1px;background:var(--brd);}
+.src-file{background:var(--g900);border-radius:10px;margin-bottom:.45rem;overflow:hidden;border:1px solid rgba(178,216,152,.12);transition:border-color .18s, box-shadow .18s;}
+.src-file:hover{border-color:rgba(178,216,152,.32);box-shadow:0 0 0 3px rgba(178,216,152,.06);}
+.src-file.open{border-color:rgba(178,216,152,.28);box-shadow:0 0 0 3px rgba(178,216,152,.07);}
+.src-file-btn{width:100%;display:flex;align-items:center;gap:.75rem;padding:.8rem 1.1rem;background:none;border:none;cursor:pointer;font-family:'JetBrains Mono',monospace;text-align:left;transition:background .15s;}
+.src-file-btn:hover{background:rgba(178,216,152,.05)}
+.src-file.open .src-file-btn{background:rgba(178,216,152,.04)}
+.src-file-icon{font-size:.8rem;color:rgba(130,217,163,.75);flex-shrink:0;font-style:normal;letter-spacing:-.05em;}
+.src-file-name{flex:1;font-size:.76rem;font-weight:500;color:rgba(198,223,170,.95);letter-spacing:.01em;}
+.src-file-name .src-file-dash{color:rgba(178,216,152,.35);margin:0 .4rem;}
+.src-file-name .src-file-label{color:rgba(178,216,152,.55);font-size:.7rem;}
+.src-lang-tag{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(178,216,152,.55);padding:.18rem .6rem;border:1px solid rgba(178,216,152,.22);border-radius:4px;flex-shrink:0;background:rgba(178,216,152,.05);}
+.src-chevron-wrap{display:flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;background:rgba(178,216,152,.1);border:1px solid rgba(178,216,152,.25);flex-shrink:0;margin-left:.2rem;transition:background .15s, border-color .15s;}
+.src-file-btn:hover .src-chevron-wrap{background:rgba(178,216,152,.2);border-color:rgba(178,216,152,.5);}
+.src-file.open .src-chevron-wrap{background:rgba(130,217,163,.2);border-color:rgba(130,217,163,.5);}
+.src-chevron{display:block;width:14px;height:14px;transition:transform .22s ease;flex-shrink:0;}
+.src-chevron svg{width:14px;height:14px;}
+.src-file.open .src-chevron{transform:rotate(180deg)}
+.src-file-body{display:none;border-top:1px solid rgba(255,255,255,.05);}
+.src-file.open .src-file-body{display:block}
+.src-file-body pre{font-family:'JetBrains Mono',monospace;font-size:.76rem;color:#c6dfaa;line-height:1.8;white-space:pre;padding:1.1rem 1.4rem 1.25rem;overflow-x:auto;position:relative;}
+.src-file-body pre::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--g500),transparent);}
+.ck{color:#82d9a3;font-weight:500}
+.cs{color:#f0c085}
+.cc{color:#6a9955}
+.cn{color:#b5cea8}
+.media-lbl{font-size:.66rem;font-weight:700;color:var(--tmu);text-transform:uppercase;letter-spacing:.1em;margin:1rem 0 .5rem;display:flex;align-items:center;gap:.4rem}
+.media-lbl svg{width:11px;height:11px}
+.media-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.75rem;margin-bottom:.4rem}
+.coming-section{background:var(--white);border:1px solid var(--brd);border-radius:var(--r4);padding:2rem 1.75rem;margin-bottom:1.25rem;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5rem;box-shadow:var(--sh1);}
+.coming-ico{width:48px;height:48px;border-radius:50%;background:var(--g100);border:1px solid var(--brd);display:flex;align-items:center;justify-content:center;margin-bottom:.5rem;}
+.coming-ico svg{width:20px;height:20px}
+.coming-section h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--td);font-weight:400}
+.coming-section p{font-size:.82rem;color:var(--tmu);max-width:360px;line-height:1.65}
+.coming-tag{display:inline-flex;align-items:center;gap:.4rem;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8a6000;background:rgba(255,200,100,.12);border:1px solid rgba(255,200,100,.25);padding:.25rem .8rem;border-radius:999px;}
+.coming-tag::before{content:'';width:5px;height:5px;border-radius:50%;background:#d4a800}
+
+/* CONTACT - improved so text fits in cards */
+.contact-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:1rem;
+}
+.contact-card{
+  background:var(--white);
+  border:1px solid var(--brd);
+  border-radius:var(--r4);
+  padding:1rem 1.15rem;
+  display:flex;
+  align-items:center;
+  gap:.85rem;
+  box-shadow:var(--sh1);
+  transition:box-shadow .2s,transform .2s;
+  min-width:0;
+  overflow:hidden;
+}
+.contact-card:hover{box-shadow:var(--sh2);transform:translateY(-2px)}
+.c-icon{
+  width:38px;height:38px;
+  border-radius:var(--r2);
+  background:var(--g100);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.c-icon svg{width:16px;height:16px}
+.c-info{min-width:0;flex:1}
+.c-lbl{
+  font-size:.6rem;
+  color:var(--tl);
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.09em;
+  white-space:nowrap;
+  margin-bottom:.15rem;
+}
+.c-val{
+  font-size:.8rem;
+  font-weight:600;
+  color:var(--td);
+  word-break:break-word;
+  line-height:1.35;
+}
+.c-val a{color:inherit;text-decoration:none;}
+.c-val a:hover{color:var(--acc);text-decoration:underline;}
+
+footer{background:var(--g900);color:rgba(255,255,255,.3);padding:1.4rem 2.5rem;font-size:.72rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+footer strong{color:rgba(255,255,255,.65)}
+.footer-right{display:flex;align-items:center;gap:1.2rem}
+.footer-dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.2)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.fu{animation:fadeUp .6s ease both}
+.fu2{animation:fadeUp .6s .1s ease both}
+.fu3{animation:fadeUp .6s .2s ease both}
+.fu4{animation:fadeUp .6s .32s ease both}
+.fu5{animation:fadeUp .6s .42s ease both}
+@media(max-width:760px){
+  .nav-in{padding:0 1.25rem}
+  .content-wrap,.page-hdr-inner{padding-left:1.25rem;padding-right:1.25rem}
+  .tabs{padding:0 1rem}
+  .stats-bar-in{flex-wrap:wrap}
+  .stat-item{flex:1 1 48%;border-right:none;border-bottom:1px solid var(--brd)}
+  footer{flex-direction:column;text-align:center}
+  .home-name{font-size:2.6rem;white-space:normal}
+  .contact-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a class="nav-logo" href="#" onclick="go('home')">VJ<em>.</em>E-Portfolio</a>
+    <ul class="nav-links">
+      <li><a href="#" onclick="go('home')"    id="n-home"    class="active">Home</a></li>
+      <li><a href="#" onclick="go('midterm')" id="n-midterm">Midterm</a></li>
+      <li><a href="#" onclick="go('final')"   id="n-final">Final</a></li>
+      <li><a href="#" onclick="go('contact')" id="n-contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div id="p-home" class="page active">
+  <div class="home-wrap">
+    <div class="home-bg">
+      <div class="home-bg-glow2"></div><div class="home-bg-amber"></div>
+      <div class="home-bg-ring1"></div><div class="home-bg-ring2"></div>
+      <div class="home-bg-ring3"></div><div class="home-bg-ring4"></div>
+      <div class="home-bg-dot"></div><div class="home-bg-dot2"></div>
+      <div class="home-bg-dot3"></div><div class="home-bg-dot4"></div>
+      <div class="home-bg-line"></div><div class="home-bg-line2"></div>
+    </div>
+    <div class="home-hero">
+      <div class="home-eyebrow fu">OOP E-Portfolio &nbsp;·&nbsp; AY 2025–2026</div>
+      <h1 class="home-name fu2"><span class="first">VJ P. Evangelista</span></h1>
+      <div class="home-line fu3"></div>
+      <p class="home-sub fu3">BSIT 2-1 &nbsp;·&nbsp; Polytechnic University of the Philippines</p>
+      <p class="home-desc fu4">Greetings! I am VJ from BSIT 2-1, and this e-portfolio showcases my Midterm outputs in Object-Oriented Programming using Java. It includes quizzes, activities, and exams that demonstrate my understanding of OOP concepts.</p>
+      <div class="home-btns fu5">
+        <button class="btn-p" onclick="go('midterm')">View Midterm &rarr;</button>
+        <button class="btn-o" onclick="go('contact')">Contact</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="p-midterm" class="page">
+  <div class="page-hdr">
+    <div class="page-hdr-inner">
+      <div>
+        <div class="hdr-eyebrow">E-Portfolio &middot; BSIT 2-1</div>
+        <h1>Midterm Outputs</h1>
+        <p>Object-Oriented Programming &middot; VJ P. Evangelista</p>
+      </div>
+      <div class="hdr-badge">AY 2025&ndash;2026</div>
+    </div>
+  </div>
+  <div class="stats-bar">
+    <div class="stats-bar-in">
+      <div class="stat-item"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--g600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><div><div class="stat-num">2</div><div class="stat-lbl">Quizzes</div></div></div>
+      <div class="stat-item"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--g600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div><div class="stat-num">3</div><div class="stat-lbl">Seatwork</div></div></div>
+      <div class="stat-item"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--g600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div><div class="stat-num">5</div><div class="stat-lbl">Activities</div></div></div>
+      <div class="stat-item"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--g600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div><div><div class="stat-num">1</div><div class="stat-lbl">Exam</div></div></div>
+    </div>
+  </div>
+  <div class="tabs-wrap">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="tab('quizzes',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Quizzes</button>
+      <button class="tab-btn" onclick="tab('seatwork',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Seatwork</button>
+      <button class="tab-btn" onclick="tab('activities',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Activities</button>
+      <button class="tab-btn" onclick="tab('exam',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>Exam</button>
+    </div>
+  </div>
+  <div class="content-wrap">
+    <div id="t-quizzes" class="tab-panel active">
+      <div class="eyebrow">Midterm</div>
+      <h2 class="sec-title">Quizzes</h2>
+      <div class="sec-divider"><span></span><span class="sec-divider-dot"></span><span></span></div>
+      <div class="card">
+        <div class="card-hdr"><div class="card-num">Q1</div><div class="card-title">Midterm Quiz #1</div><span class="badge bg">Reflection</span></div>
+        <div class="refl"><div class="refl-lbl"><svg viewBox="0 0 24 24" fill="none" stroke="var(--acc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Reflection</div><p>Quiz 1, taken last March 5, helped me revisit the basics of Java such as IDEs, class structure, identifiers, variables, and operators. As I reviewed these lessons, I realized how each concept builds the foundation for understanding how Java works. Learning about memory and how data is stored made me appreciate how precise programming can be. This quiz reminded me that even simple topics are important because they shape how I think when writing code.</p></div>
+      </div>
+      <div class="card">
+        <div class="card-hdr"><div class="card-num">Q2</div><div class="card-title">Midterm Quiz #2</div><span class="badge bg">Reflection</span></div>
+        <div class="refl"><div class="refl-lbl"><svg viewBox="0 0 24 24" fill="none" stroke="var(--acc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Reflection</div><p>Quiz 2 covered control flow, input/output, and methods, which deepened my understanding of how programs actually run. I learned how loops make tasks repeat automatically and how predefined classes simplify coding. Reviewing these lessons helped me see how methods organize code and make it easier to reuse. This quiz made me realize that learning these concepts is not just about memorizing terms but about understanding how they make programs efficient and logical.</p></div>
+      </div>
+    </div>
+    <div id="t-seatwork" class="tab-panel">
+      <div class="eyebrow">Midterm</div>
+      <h2 class="sec-title">Seatwork</h2>
+      <div class="sec-divider"><span></span><span class="sec-divider-dot"></span><span></span></div>
+      <div class="card">
+        <div class="card-hdr"><div class="card-num">SW1</div><div class="card-title">Midterm Seatwork #1</div><span class="badge bg">Reflection</span></div>
+        <div class="refl"><div class="refl-lbl"><svg viewBox="0 0 24 24" fill="none" stroke="var(--acc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Reflection</div><p>Seatwork 1, done right after Quiz 1, challenged me to solve outputs using different operators like unary, relational, and logical ones. I noticed how prefix and postfix operations can change variable values in ways that are sometimes confusing. Through this seatwork, I learned to pay closer attention to details and think carefully before predicting results. It strengthened my logical reasoning and taught me that small symbols can make big differences in programming outcomes.</p></div>
+      </div>
+      <div class="card">
+        <div class="card-hdr"><div class="card-num">SW2</div><div class="card-title">Midterm Seatwork #2 &ndash; Basic ATM System</div><span class="badge bb">Code &middot; PDF</span></div>
+        <div class="src-section"><div class="src-header"><span class="src-header-label"><span class="src-chevrons">&lt;&gt;</span> Source Code</span><div class="src-header-line"></div></div>
+          <div class="src-file" id="sw2-f1"><button class="src-file-btn" onclick="toggleFile('sw2-f1')"><span class="src-file-icon">&lt;&gt;</span><span class="src-file-name">ATMTransactionCounterLangelista.java</span><span class="src-lang-tag">Java</span><span class="src-chevron-wrap"><span class="src-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(130,217,163,.9)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></span></button>
+            <div class="src-file-body"><pre><span class="ck">import</span> java.util.Scanner;
+<span class="ck">public class</span> <span class="cs">ATMTransactionCounterLangelista</span> {
+    <span class="ck">public static void</span> <span class="cs">main</span>(<span class="ck">String</span>[] args) {
+        Scanner input = <span class="ck">new</span> Scanner(System.in);
+        <span class="ck">int</span> balance = <span class="cn">8000</span>;
+        <span class="ck">int</span> menuChoice;
+        <span class="ck">int</span> transactionCount = <span class="cn">0</span>;
+        <span class="ck">while</span> (<span class="ck">true</span>) {
+            System.out.println(<span class="cs">"==== ATM Menu ===="</span>);
+            System.out.println(<span class="cs">"1. Check Balance"</span>);
+            System.out.println(<span class="cs">"2. Deposit"</span>);
+            System.out.println(<span class="cs">"3. Withdraw"</span>);
+            System.out.println(<span class="cs">"4. Exit"</span>);
+            System.out.print(<span class="cs">"Enter choice: "</span>);
+            menuChoice = input.nextInt();
+            <span class="ck">switch</span> (menuChoice) {
+                <span class="ck">case</span> <span class="cn">1</span>: transactionCount++; System.out.println(<span class="cs">"Balance = "</span> + balance); <span class="ck">break</span>;
+                <span class="ck">case</span> <span class="cn">2</span>: transactionCount++; System.out.print(<span class="cs">"Enter deposit amount: "</span>); <span class="ck">int</span> deposit = input.nextInt(); balance += deposit; System.out.println(<span class="cs">"New balance = "</span> + balance); <span class="ck">break</span>;
+                <span class="ck">case</span> <span class="cn">3</span>: transactionCount++; System.out.print(<span class="cs">"Enter withdrawal amount: "</span>); <span class="ck">int</span> withdraw = input.nextInt();
+                    <span class="ck">if</span> (withdraw &gt; balance) System.out.println(<span class="cs">"Not enough balance."</span>);
+                    <span class="ck">else if</span> (withdraw &gt; <span class="cn">2000</span>) System.out.println(<span class="cs">"Maximum withdrawal is 2000 only."</span>);
+                    <span class="ck">else</span> { balance -= withdraw; System.out.println(<span class="cs">"New balance = "</span> + balance); } <span class="ck">break</span>;
+                <span class="ck">case</span> <span class="cn">4</span>: System.out.println(<span class="cs">"Transaction count = "</span> + transactionCount); System.out.println(<span class="cs">"Thank you!"</span>); <span class="ck">break</span>;
+                <span class="ck">default</span>: System.out.println(<span class="cs">"Invalid choice!"</span>);
+            }
+            <span class="ck">if</span> (menuChoice == <span class="cn">4</span>) { <span class="ck">break</span>; }
+        }
+    }
+}</pre></div></div>
+        </div>
+        <div class="media-lbl"><svg viewBox="0 0 24 24" fill="none" stroke="var(--tmu)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/></svg>Attachments</div>
+        <div class="media-grid" style="grid-template-columns:1fr;"><iframe src="files/seatwork2.pdf" width="100%" height="500px" style="border:1px solid var(--brd);border-radius:var(--r2);"></iframe></div>
+        <div class="refl"><div class="refl-lbl"><svg viewBox="0 0 24 24" fill="none" stroke="var(--acc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Reflection</div><p>In Seatwork 2, I created a simple ATM system using loops and conditions. I learned how to apply logic to make the program realistic by adding features like deposits, withdrawals, and transaction counts. It felt rewarding to see how the program responded to user input like a real machine. This activity made me realize that programming is not just about writing code, it's about designing systems that people can actually use.</p></div>
+      </div>
+      <div class="card">
+        <div class="card-hdr"><div class="card-num">SW3</div><div class="card-title">Midterm Seatwork #3 &ndash; StudentAgeAnalyzer</div><span class="badge bb">Code &middot; PDF</span></div>
+        <div class="src-section"><div class="src-header"><span class="src-header-label"><span class="src-chevrons">&lt;&gt;</span> Source Code</span><div class="src-header-line"></div></div>
+          <div class="src-file" id="sw3-f1"><button class="src-file-btn" onclick="toggleFile('sw3-f1')"><span class="src-file-icon">&lt;&gt;</span><span class="src-file-name">StudentAgeAnalyzerEvangelista.java</span><span class="src-lang-tag">Java</span><span class="src-chevron-wrap"><span class="src-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(130,217,163,.9)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></span></button>
+            <div class="src-file-body"><pre><span class="ck">import</span> java.util.Scanner;
+<span class="ck">public class</span> <span class="cs">StudentAgeAnalyzerEvangelista</span> {
+    <span class="ck">public static void</span> <span class="cs">main</span>(<span class="ck">String</span>[] args) {
+        Scanner sc = <span class="ck">new</span> Scanner(System.in);
+        System.out.print(<span class="cs">"Enter student name: "</span>); <span class="ck">String</span> studentName = sc.nextLine();
+        System.out.print(<span class="cs">"Enter age: "</span>); <span class="ck">int</span> age = sc.nextInt();
+        <span class="ck">String</span> category = getCategory(age);
+        System.out.println(<span class="cs">"Student name: "</span> + studentName);
+        System.out.println(<span class="cs">"Age: "</span> + age);
+        System.out.println(<span class="cs">"Category: "</span> + category);
+        sc.close();
+    }
+    <span class="ck">public static</span> <span class="ck">String</span> <span class="cs">getCategory</span>(<span class="ck">int</span> age) {
+        <span class="ck">if</span> (age &gt;= <span class="cn">0</span> &amp;&amp; age &lt;= <span class="cn">12</span>) <span class="ck">return</span> <span class="cs">"Child"</span>;
+        <span class="ck">else if</span> (age &gt;= <span class="cn">13</span> &amp;&amp; age &lt;= <span class="cn">19</span>) <span class="ck">return</span> <span class="cs">"Teenager"</span>;
+        <span class="ck">else if</span> (age &gt;= <span class="cn">20</span> &amp;&amp; age &lt;= <span class="cn">59</span>) <span class="ck">return</span> <span class="cs">"Adult"</span>;
+        <span class="ck">else if</span> (age &gt;= <span class="cn">60</span>) <span class="ck">return</span> <span class="cs">"Senior Citizen"</span>;
+        <span class="ck">else</span> <span class="ck">return</span> <span class="cs">"Invalid Age"</span>;
+    }
+}</pre></div></div>
+        </div>
+        <div class="media-lbl"><svg viewBox="0 0 24 24" fill="none" stroke="var(--tmu)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/></svg>Attachments</div>
+        <div class="media-grid" style="grid-template-columns:1fr;"><iframe src="files/seatwork3.pdf" width="100%" height="500px" style="border:1px solid var(--brd);border-radius:var(--r2);"></iframe></div>
+        <div class="refl"><div class="refl-lbl"><svg viewBox="0 0 24 24" fill="none" stroke="var(--acc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Reflection</div><p>In this seatwork, I learned how to use methods and conditions to analyze age categories. I discovered that separating logic into a method makes the program easier to read, reuse, and maintain. It also taught me how to think systematically when solving problems. This activity showed me that organizing code properly helps make programs more efficient and understandable.</p></div>
+      </div>
+    </div>
+    <div id="t-activities" class="tab-panel">
+      <div class="eyebrow">Midterm</div>
+      <h2 class="sec-title">Activities</h2>
+      <div class="sec-divider"><span></span><span class="sec-divider-dot"></span><span></span></div>
+      <div class="card">
+        <div class="card-hdr"><div class="card-num">A1</div><div class="card-title">Midterm Activity #1 &ndash; Variables</div><span class="badge bb">PDF</span></div>
+        <p style="font-size:.845rem;color:var(--tmu);margin-bottom:.85rem;line-height:1.7;">An introductory activity covering variables — declaring, initializing, and using different data types in Java.</p>
+        <div class="media-lbl"><svg viewBox="0 0 24 24" fill="none" stroke="var(--tmu)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/></svg>Attachments</div>
+        <div class="media-grid" style="grid-template-columns:1fr;"><iframe src="files/activity1.pdf" width="100%" height="500px" style="border:1px solid var(--brd);border-radius:var(--r2);"></iframe></div>
+        <div class="refl"><div class="refl-lbl"><svg viewBox="0 0 24 24" fill="none" stroke="var(--acc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Reflection &amp; Learnings</div><p>Activity 1 made me realize how variables are stored differently in stack and heap memory. I saw how changing one reference can affect another, which taught me to be careful when working with objects. Understanding how memory works helped me appreciate what happens behind the scenes when a program runs. This activity showed me that programming isn't just about writing code, it's also about understanding how data behaves inside the computer.</p></div>
+      </div>
+      <div class="card">
+        <div class="card-hdr"><div class="card-num">A2</div><div class="card-title">Midterm Activity #2 &ndash; Operators</div><span class="badge bd">Code &middot; PDF</span></div>
+        <p style="font-size:.845rem;color:var(--tmu);margin-bottom:.85rem;line-height:1.7;">Exploring Java operators — arithmetic, relational, logical, and assignment operators through practical programs.</p>
+        <div class="src-section"><div class="src-header"><span class="src-header-label"><span class="src-chevrons">&lt;&gt;</span> Source Code</span><div class="src-header-line"></div></div>
+          <div class="src-file" id="a2-f1"><button class="src-file-btn" onclick="toggleFile('a2-f1')"><span class="src-file-icon">&lt;&gt;</span><span class="src-file-name">Activity2_Bitwise.java <span class="src-file-dash">&mdash;</span> <span class="src-file-label">Part I, Item 1</span></span><span class="src-lang-tag">Java</span><span class="src-chevron-wrap"><span class="src-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(130,217,163,.9)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></span></button>
+            <div class="src-file-body"><pre><span class="ck">package</span> activity2;
+<span class="ck">public class</span> <span class="cs">Activity2_Bitwise</span> {
+    <span class="ck">public static void</span> <span class="cs">main</span>(<span class="ck">String</span>[] args) {
+        <span class="ck">int</span> a = <span class="cn">10</span>, b = <span class="cn">15</span>;
+        System.out.println((a &amp; b) == <span class="cn">10</span>);
+        System.out.println(a &amp; b);
+        System.out.println((a ^ b) == <span class="cn">10</span>);
+        System.out.println(a | b);
+    }
+}</pre></div></div>
+          <div class="src-file" id="a2-f2"><button class="src-file-btn" onclick="toggleFile('a2-f2')"><span class="src-file-icon">&lt;&gt;</span><span class="src-file-name">Activity2_Ternary.java <span class="src-file-dash">&mdash;</span> <span class="src-file-label">Part I, Item 2</span></span><span class="src-lang-tag">Java</span><span class="src-chevron-wrap"><span class="src-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(130,217,163,.9)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></span></button>
+            <div class="src-file-body"><pre><span class="ck">package</span> activity2;
+<span class="ck">public class</span> <span class="cs">Activity2_Ternary</span> {
+    <span class="ck">public static void</span> <span class="cs">main</span>(<span class="ck">String</span>[] args) {
+        <span class="ck">int</span> x = <span class="cn">25</span>, y = <span class="cn">30</span>;
+        System.out.println((x &lt; y) ? <span class="ck">true</span> : <span class="ck">false</span>);
+        System.out.println((x &gt; y) ? <span class="ck">true</span> : <span class="ck">false</span>);
+        System.out.println((x &lt; y) ? x : y);
+        System.out.println((x &gt; y) ? x : y);
+    }
+}</pre></div></div>
+          <div class="src-file" id="a2-f3"><button class="src-file-btn" onclick="toggleFile('a2-f3')"><span class="src-file-icon">&lt;&gt;</span><span class="src-file-name">Activity2_Assignment.java <span class="src-file-dash">&mdash;</span> <span class="src-file-label">Part I, Item 3</span></span><span class="src-lang-tag">Java</span><span class="src-chevron-wrap"><span class="src-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(130,217,163,.9)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></span></button>
+            <div class="src-file-body"><pre><span class="ck">package</span> activity2;
+<span class="ck">public class</span> <span class="cs">Activity2_Assignment</span> {
+    <span class="ck">public static void</span> <span class="cs">main</span>(<span class="ck">String</span>[] args) {
+        <span class="ck">int</span> num = <span class="cn">44</span>;
+        num += <span class="cn">76</span>; System.out.println(<span class="cs">"Addition: "</span> + num);
+        num -= <span class="cn">50</span>; System.out.println(<span class="cs">"Subtraction: "</span> + num);
+        num *= <span class="cn">2</span>; num += <span class="cn">4</span>; System.out.println(<span class="cs">"Multiplication: "</span> + num);
+        num /= <span class="cn">9</span>; System.out.println(<span class="cs">"Division: "</span> + num);
+    }
+}</pre></div></div>
+          <div class="src-file" id="a2-f4"><button class="src-file-btn" onclick="toggleFile('a2-f4')"><span class="src-file-icon">&lt;&gt;</span><span class="src-file-name">Activity2_PartII.java <span class="src-file-dash">&mdash;</span> <span class="src-file-label">Part II</span></span><span class="src-lang-tag">Java</span><span class="src-chevron-wrap"><span class="src-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(130,217,163,.9)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></span></button>
+            <div class="src-file-body"><pre><span class="ck">package</span> activity2;
+<span class="ck">public class</span> <span class="cs">Activity2_PartII</span> {
+    <span class="ck">public static void</span> <span class="cs">main</span>(<span class="ck">String</span>[] args) {
+        <span class="ck">int</span> a = <span class="cn">12</span>, b = <span class="cn">5</span>;
+        System.out.println(<span class="cs">"Arithmetic (+): "</span> + (a + b));
+        System.out.println(<span class="cs">"Relational (a &gt; b): "</span> + (a &gt; b));
+        System.out.println(<span class="cs">"Logical (a &gt; 10 || b &lt; 3): "</span> + (a &gt; <span class="cn">10</span> || b &lt; <span class="cn">3</span>));
+        <span class="ck">int</span> x = <span class="cn">7</span>;
+        System.out.println(<span class="cs">"Unary tricky: "</span> + (x++ + ++x));
+        <span class="ck">int</span> y = <span class="cn">20</span>; y *= <span class="cn">2</span>;
+        System.out.println(<span class="cs">"Assignment (*=): "</span> + y);
+        System.out.println(<span class="cs">"Bitwise (&amp;): "</span> + (a &amp; b));
+    }
+}</pre></div></div>
+        </div>
+        <div class="media-lbl"><svg viewBox="0 0 24 24" fill="none" stroke="var(--tmu)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/></svg>Attachments</div>
+        <div class="media-grid" style="grid-template-columns:1fr;"><iframe src="files/activity2.pdf" width="100%" height="500px" style="border:1px solid var(--brd);border-radius:var(--r2);"></iframe></div>
+        <div class="refl"><div class="refl-lbl"><svg viewBox="0 0 24 24" fill="none" stroke="var(--acc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Reflection &amp; Learnings</div><p>Activity 2 helped me explore how different operators work in Java and how they affect program results. By experimenting with bitwise, ternary, and assignment operators, I learned that even small symbols can change logic completely. This activity taught me to analyze how each operator behaves and how to use them properly in solving problems. It made me realize that mastering operators is essential for writing accurate and efficient code.</p></div>
+      </div>
+      <div class="card">
+        <div class="card-hdr"><div class="card-num">A3</div><div class="card-title">Midterm Activity #3 &ndash; Simple Wallet System</div><span class="badge bd">Code &middot; PDF</span></div>
+        <p style="font-size:.845rem;color:var(--tmu);margin-bottom:.85rem;line-height:1.7;">A simple wallet system that simulates basic financial operations such as depositing and withdrawing funds using OOP principles.</p>
+        <div class="src-section"><div class="src-header"><span class="src-header-label"><span class="src-chevrons">&lt;&gt;</span> Source Code</span><div class="src-header-line"></div></div>
+          <div class="src-file" id="a3-f1"><button class="src-file-btn" onclick="toggleFile('a3-f1')"><span class="src-file-icon">&lt;&gt;</span><span class="src-file-name">SimpleWalletEvangelista.java</span><span class="src-lang-tag">Java</span><span class="src-chevron-wrap"><span class="src-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(130,217,163,.9)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></span></button>
+            <div class="src-file-body"><pre><span class="ck">import</span> java.util.Scanner;
+<span class="ck">public class</span> <span class="cs">SimpleWalletEvangelista</span> {
+    <span class="ck">public static void</span> <span class="cs">main</span>(<span class="ck">String</span>[] args) {
+        Scanner input = <span class="ck">new</span> Scanner(System.in);
+        <span class="ck">int</span> balance = <span class="cn">3000</span>, choice, transactionCount = <span class="cn">0</span>;
+        <span class="ck">while</span> (<span class="ck">true</span>) {
+            System.out.println(<span class="cs">"===== WALLET MENU ====="</span>);
+            System.out.println(<span class="cs">"1. View Balance  2. Add Money  3. Spend Money  4. Exit"</span>);
+            System.out.print(<span class="cs">"Enter choice: "</span>); choice = input.nextInt();
+            <span class="ck">switch</span> (choice) {
+                <span class="ck">case</span> <span class="cn">1</span>: transactionCount++; System.out.println(<span class="cs">"Balance = "</span> + balance); <span class="ck">break</span>;
+                <span class="ck">case</span> <span class="cn">2</span>: System.out.print(<span class="cs">"Enter amount to add: "</span>); <span class="ck">int</span> add = input.nextInt();
+                    <span class="ck">if</span> (add &gt; <span class="cn">0</span>) { balance += add; transactionCount++; System.out.println(<span class="cs">"New Balance = "</span> + balance); }
+                    <span class="ck">else</span> System.out.println(<span class="cs">"Invalid amount."</span>); <span class="ck">break</span>;
+                <span class="ck">case</span> <span class="cn">3</span>: System.out.print(<span class="cs">"Enter amount to spend: "</span>); <span class="ck">int</span> spend = input.nextInt();
+                    <span class="ck">if</span> (spend &gt; balance) System.out.println(<span class="cs">"Not enough balance."</span>);
+                    <span class="ck">else if</span> (spend &gt; <span class="cn">1000</span>) System.out.println(<span class="cs">"Maximum spend is 1000 only."</span>);
+                    <span class="ck">else if</span> (spend &lt;= <span class="cn">0</span>) System.out.println(<span class="cs">"Invalid spend amount."</span>);
+                    <span class="ck">else</span> { balance -= spend; transactionCount++; System.out.println(<span class="cs">"New Balance = "</span> + balance); } <span class="ck">break</span>;
+                <span class="ck">case</span> <span class="cn">4</span>: System.out.println(<span class="cs">"Successful Transaction Count = "</span> + transactionCount); System.out.println(<span class="cs">"Thank you!"</span>); <span class="ck">break</span>;
+                <span class="ck">default</span>: System.out.println(<span class="cs">"Invalid choice."</span>);
+            }
+            <span class="ck">if</span> (choice == <span class="cn">4</span>) <span class="ck">break</span>;
+        }
+    }
+}</pre></div></div>
+        </div>
+        <div class="media-lbl"><svg viewBox="0 0 24 24" fill="none" stroke="var(--tmu)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/></svg>Attachments</div>
+        <div class="media-grid" style="grid-template-columns:1fr;"><iframe src="files/activity3.pdf" width="100%" height="500px" style="border:1px solid var(--brd);border-radius:var(--r2);"></iframe></div>
+        <div class="refl"><div class="refl-lbl"><svg viewBox="0 0 24 24" fill="none" stroke="var(--acc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Reflection &amp; Learnings</div><p>This activity taught me how to apply loops and conditions in a real program like a wallet system. I learned how to set rules for spending and deposits, making the program more practical and realistic. It was satisfying to see how the system responded correctly to user actions. This activity showed me that programming is not just about syntax, it's about applying logic to create programs that reflect real-life situations.</p></div>
+      </div>
+      <div class="card">
+        <div class="card-hdr"><div class="card-num">A4</div><div class="card-title">Midterm Activity #4 &ndash; Grade Evaluation System</div><span class="badge bd">Code &middot; PDF</span></div>
+        <p style="font-size:.845rem;color:var(--tmu);margin-bottom:.85rem;line-height:1.7;">A grade evaluation system that takes student scores as input and determines the corresponding grade or remarks using decision structures.</p>
+        <div class="src-section"><div class="src-header"><span class="src-header-label"><span class="src-chevrons">&lt;&gt;</span> Source Code</span><div class="src-header-line"></div></div>
+          <div class="src-file" id="a4-f1"><button class="src-file-btn" onclick="toggleFile('a4-f1')"><span class="src-file-icon">&lt;&gt;</span><span class="src-file-name">GradeEvaluationEvangelista.java</span><span class="src-lang-tag">Java</span><span class="src-chevron-wrap"><span class="src-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(130,217,163,.9)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></span></button>
+            <div class="src-file-body"><pre><span class="ck">public class</span> <span class="cs">GradeEvaluationEvangelista</span> {
+    <span class="ck">public static void</span> <span class="cs">main</span>(<span class="ck">String</span>[] args) {
+        <span class="ck">double</span> prelim = <span class="cn">85</span>, midterm = <span class="cn">78</span>, finals = <span class="cn">90</span>;
+        <span class="ck">double</span> average = (prelim + midterm + finals) / <span class="cn">3</span>;
+        System.out.println(<span class="cs">"Prelim: "</span> + prelim + <span class="cs">"  Midterm: "</span> + midterm + <span class="cs">"  Final: "</span> + finals);
+        System.out.printf(<span class="cs">"Average: %.2f%n"</span>, average);
+        <span class="ck">if</span> (average &gt;= <span class="cn">90</span>) System.out.println(<span class="cs">"Remark: Excellent"</span>);
+        <span class="ck">else if</span> (average &gt;= <span class="cn">80</span>) System.out.println(<span class="cs">"Remark: Good"</span>);
+        <span class="ck">else if</span> (average &gt;= <span class="cn">75</span>) System.out.println(<span class="cs">"Remark: Fair"</span>);
+        <span class="ck">else</span> System.out.println(<span class="cs">"Remark: Failed"</span>);
+    }
+}</pre></div></div>
+        </div>
+        <div class="media-lbl"><svg viewBox="0 0 24 24" fill="none" stroke="var(--tmu)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/></svg>Attachments</div>
+        <div class="media-grid" style="grid-template-columns:1fr;"><iframe src="files/activity4.pdf" width="100%" height="500px" style="border:1px solid var(--brd);border-radius:var(--r2);"></iframe></div>
+        <div class="refl"><div class="refl-lbl"><svg viewBox="0 0 24 24" fill="none" stroke="var(--acc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Reflection &amp; Learnings</div><p>This coded activity helped me understand how to use conditions in evaluating grades. I learned how formulas and if-else statements can automatically compute averages and display remarks like Excellent, Good, or Failed. It made me realize how programming can simplify tasks that are usually done manually. This activity showed me that coding can be applied to real situations, like grading systems, to make processes faster and more accurate.</p></div>
+      </div>
+      <div class="card">
+        <div class="card-hdr"><div class="card-num">A5</div><div class="card-title">Midterm Activity #5 &ndash; Personal Expense Tracker</div><span class="badge bd">Code &middot; PDF</span></div>
+        <p style="font-size:.845rem;color:var(--tmu);margin-bottom:.85rem;line-height:1.7;">A personal expense tracker that records and summarizes spending using arrays and OOP concepts in Java.</p>
+        <div class="src-section"><div class="src-header"><span class="src-header-label"><span class="src-chevrons">&lt;&gt;</span> Source Code</span><div class="src-header-line"></div></div>
+          <div class="src-file" id="a5-f1"><button class="src-file-btn" onclick="toggleFile('a5-f1')"><span class="src-file-icon">&lt;&gt;</span><span class="src-file-name">ExpenseTrackerEvangelista.java</span><span class="src-lang-tag">Java</span><span class="src-chevron-wrap"><span class="src-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(130,217,163,.9)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></span></button>
+            <div class="src-file-body"><pre><span class="ck">import</span> java.util.Scanner;
+<span class="ck">public class</span> <span class="cs">ExpenseTrackerEvangelista</span> {
+    <span class="ck">public static void</span> <span class="cs">showTitle</span>() { System.out.println(<span class="cs">"\n|--- Simple Expense Tracker ---|\n"</span>); }
+    <span class="ck">public static double</span> <span class="cs">getTotal</span>(<span class="ck">double</span> f, <span class="ck">double</span> t, <span class="ck">double</span> m) { <span class="ck">return</span> f + t + m; }
+    <span class="ck">public static</span> <span class="ck">String</span> <span class="cs">budgetCheck</span>(<span class="ck">double</span> total, <span class="ck">double</span> budget) {
+        <span class="ck">return</span> total &gt; budget ? <span class="cs">"Oof, you went over your budget!"</span> : <span class="cs">"Total is within your budget. Keep it up ^^"</span>;
+    }
+    <span class="ck">public static void</span> <span class="cs">showResults</span>(<span class="ck">double</span> total, <span class="ck">double</span> budget, <span class="ck">String</span> msg) {
+        System.out.println(<span class="cs">"Total Expenses: "</span> + total);
+        System.out.println(<span class="cs">"Budget: "</span> + budget);
+        System.out.println(<span class="cs">"Budget Status: "</span> + msg);
+    }
+    <span class="ck">public static void</span> <span class="cs">main</span>(<span class="ck">String</span>[] args) {
+        Scanner input = <span class="ck">new</span> Scanner(System.in); showTitle();
+        System.out.print(<span class="cs">"Enter food expenses: "</span>); <span class="ck">double</span> f = input.nextDouble();
+        System.out.print(<span class="cs">"Enter travel expenses: "</span>); <span class="ck">double</span> t = input.nextDouble();
+        System.out.print(<span class="cs">"Enter other expenses: "</span>); <span class="ck">double</span> m = input.nextDouble();
+        System.out.print(<span class="cs">"Enter your budget: "</span>); <span class="ck">double</span> budget = input.nextDouble();
+        <span class="ck">double</span> total = getTotal(f, t, m);
+        showResults(total, budget, budgetCheck(total, budget));
+        <span class="ck">double</span> rem = budget - total;
+        System.out.println(rem &gt;= <span class="cn">0</span> ? <span class="cs">"You still have PHP"</span> + rem + <span class="cs">" left."</span> : <span class="cs">"You overspent by "</span> + Math.abs(rem) + <span class="cs">"."</span>);
+        System.out.println(<span class="cs">"\nThanks for using VJ's Expense Tracker. Keep on grinding^^"</span>);
+        input.close();
+    }
+}</pre></div></div>
+        </div>
+        <div class="media-lbl"><svg viewBox="0 0 24 24" fill="none" stroke="var(--tmu)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/></svg>Attachments</div>
+        <div class="media-grid" style="grid-template-columns:1fr;"><iframe src="files/activity5.pdf" width="100%" height="500px" style="border:1px solid var(--brd);border-radius:var(--r2);"></iframe></div>
+        <div class="refl"><div class="refl-lbl"><svg viewBox="0 0 24 24" fill="none" stroke="var(--acc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Reflection &amp; Learnings</div><p>In Activity 5, I learned how to use methods in Java to make a program more organized and practical. I saw how combining user input with calculations can help track expenses and check if the budget is enough. It felt realistic because it connects programming with everyday life. This activity made me realize that coding can be used to manage money wisely and create tools that help people make better decisions.</p></div>
+      </div>
+    </div>
+    <div id="t-exam" class="tab-panel">
+      <div class="eyebrow">Midterm</div>
+      <h2 class="sec-title">Midterm Exam</h2>
+      <div class="sec-divider"><span></span><span class="sec-divider-dot"></span><span></span></div>
+      <div class="card">
+        <div class="card-hdr"><div class="card-num">EX</div><div class="card-title">Midterm Examination</div><span class="badge bg">Completed</span></div>
+        <div class="refl"><div class="refl-lbl"><svg viewBox="0 0 24 24" fill="none" stroke="var(--acc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Exam Reflection</div><p>During the exam taken last April 22 (2nd day of midterms), I expected it to be very hard but it turned out a bit easier than I thought, maybe with the help of what I reviewed. I struggled with the coding part and some items, especially items 1–16 in the last part of the exam (operators), because of pressure and mental block. Overall, I hope I did enough to pass, and I learned that managing time and focus is just as important as knowing the lessons.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="p-final" class="page">
+  <div class="page-hdr">
+    <div class="page-hdr-inner">
+      <div><div class="hdr-eyebrow">E-Portfolio &middot; BSIT 2-1</div><h1>Final Outputs</h1><p>Object-Oriented Programming &middot; VJ P. Evangelista</p></div>
+      <div class="hdr-badge">Coming Soon</div>
+    </div>
+  </div>
+  <div class="stats-bar"><div class="stats-bar-in">
+    <div class="stat-item"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--g600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div><div class="stat-num">0</div><div class="stat-lbl">Quizzes</div></div></div>
+    <div class="stat-item"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--g600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div><div class="stat-num">0</div><div class="stat-lbl">Seatwork</div></div></div>
+    <div class="stat-item"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--g600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div><div class="stat-num">0</div><div class="stat-lbl">Activities</div></div></div>
+    <div class="stat-item"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--g600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div><div><div class="stat-num">0</div><div class="stat-lbl">Exam</div></div></div>
+  </div></div>
+  <div class="tabs-wrap"><div class="tabs">
+    <button class="tab-btn active" onclick="tab('fquizzes',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Quizzes</button>
+    <button class="tab-btn" onclick="tab('fseatwork',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Seatwork</button>
+    <button class="tab-btn" onclick="tab('factivities',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Activities</button>
+    <button class="tab-btn" onclick="tab('fexam',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>Exam</button>
+  </div></div>
+  <div class="content-wrap">
+    <div id="t-fquizzes" class="tab-panel active"><div class="eyebrow">Final</div><h2 class="sec-title">Final Quizzes</h2><p class="sec-desc">This section will be updated after the final examination period.</p><div class="coming-section"><div class="coming-ico"><svg viewBox="0 0 24 24" fill="none" stroke="var(--g600)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><div class="coming-tag">Not Yet Available</div><h3>Content Coming After Finals</h3><p>Quiz reflections and outputs will be added here after the final examination. Please check back soon.</p></div></div>
+    <div id="t-fseatwork" class="tab-panel"><div class="eyebrow">Final</div><h2 class="sec-title">Final Seatwork</h2><p class="sec-desc">This section will be updated after the final examination period.</p><div class="coming-section"><div class="coming-ico"><svg viewBox="0 0 24 24" fill="none" stroke="var(--g600)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><div class="coming-tag">Not Yet Available</div><h3>Content Coming After Finals</h3><p>Seatwork outputs, source codes, and reflections will be added here after the final examination.</p></div></div>
+    <div id="t-factivities" class="tab-panel"><div class="eyebrow">Final</div><h2 class="sec-title">Final Activities</h2><p class="sec-desc">This section will be updated after the final examination period.</p><div class="coming-section"><div class="coming-ico"><svg viewBox="0 0 24 24" fill="none" stroke="var(--g600)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><div class="coming-tag">Not Yet Available</div><h3>Content Coming After Finals</h3><p>Programming activity outputs, source codes, and reflections will be added here after the final examination.</p></div></div>
+    <div id="t-fexam" class="tab-panel"><div class="eyebrow">Final</div><h2 class="sec-title">Final Exam</h2><p class="sec-desc">This section will be updated after the final examination period.</p><div class="coming-section"><div class="coming-ico"><svg viewBox="0 0 24 24" fill="none" stroke="var(--g600)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><div class="coming-tag">Not Yet Available</div><h3>Content Coming After Finals</h3><p>Exam answers and reflection will be added here after the final examination.</p></div></div>
+  </div>
+</div>
+
+<!-- CONTACT — with updated subtitle and fixed card layout -->
+<div id="p-contact" class="page">
+  <div class="page-hdr">
+    <div class="page-hdr-inner">
+      <div>
+        <div class="hdr-eyebrow">E-Portfolio &middot; BSIT 2-1</div>
+        <h1>Contact</h1>
+        <p>Let's connect! Find me at the following platforms.</p>
+      </div>
+    </div>
+  </div>
+  <div class="content-wrap">
+    <div style="padding:1rem 0 3rem">
+      <div class="eyebrow">Contact</div>
+      <h2 class="sec-title">VJ P. Evangelista</h2>
+      <p class="sec-desc">Feel free to reach out through any of the following channels.</p>
+      <div class="contact-grid">
+
+        <div class="contact-card">
+          <div class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--g600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div class="c-info">
+            <div class="c-lbl">Gmail</div>
+            <div class="c-val"><a href="mailto:evangelistavjp@gmail.com">evangelistavjp@gmail.com</a></div>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--g600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg></div>
+          <div class="c-info">
+            <div class="c-lbl">Phone</div>
+            <div class="c-val">09567669852</div>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--g600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+          <div class="c-info">
+            <div class="c-lbl">LinkedIn</div>
+            <div class="c-val"><a href="https://www.linkedin.com/in/vj-evangelista-66a873349" target="_blank">vj-evangelista-66a873349</a></div>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--g600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></div>
+          <div class="c-info">
+            <div class="c-lbl">GitHub</div>
+            <div class="c-val"><a href="https://github.com/vjparagas" target="_blank">github.com/vjparagas</a></div>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--g600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div class="c-info">
+            <div class="c-lbl">PUP Webmail</div>
+            <div class="c-val"><a href="mailto:vjpevangelista@iskolarngbayan.pup.edu.ph">vjpevangelista@iskolarngbayan.pup.edu.ph</a></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div><strong>VJ P. Evangelista</strong> &nbsp;&middot;&nbsp; OOP E-Portfolio &nbsp;&middot;&nbsp; AY 2025&ndash;2026</div>
+  <div class="footer-right"><span>PUP Main Campus</span><div class="footer-dot"></div><span>BSIT 2-1</span><div class="footer-dot"></div><span>Java</span></div>
+</footer>
+
+<script>
+function go(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('p-'+id).classList.add('active');
+  document.getElementById('n-'+id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function tab(id,btn){
+  const panel=document.getElementById('t-'+id);
+  const page=panel.closest('.page');
+  page.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  btn.closest('.tabs').querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  panel.classList.add('active');
+  btn.classList.add('active');
+}
+function toggleFile(id){
+  document.getElementById(id).classList.toggle('open');
+}
+</script>
+</body>
+</html>
+HTMLDONE
+echo "File written: $(wc -c < /mnt/user-data/outputs/index.html) bytes"
